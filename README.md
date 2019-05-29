@@ -101,7 +101,7 @@ ActivityCompat.requestPermissions(
 
 ### One-time location request
 
-The one-time location request provides a method to make a single request for location: [getLocation](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPS.html#getLocation-com.skyhookwireless.wps.WPSAuthentication-com.skyhookwireless.wps.WPSStreetAddressLookup-boolean-com.skyhookwireless.wps.WPSLocationCallback-).
+The one-time location request provides a method to make a single request for location: [getLocation()](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPS.html#getLocation-com.skyhookwireless.wps.WPSAuthentication-com.skyhookwireless.wps.WPSStreetAddressLookup-boolean-com.skyhookwireless.wps.WPSLocationCallback-).
 
 The request will call the callback method. The [handleWPSLocation()](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPSLocationCallback.html#handleWPSLocation-com.skyhookwireless.wps.WPSLocation-) method is passed the [WPSLocation](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPSLocation.html) object which will contain the location information.
 
@@ -133,15 +133,13 @@ You can also request a street address or time zone lookup with this method.
 
 ### Periodic location
 
-The periodic location request provides an ongoing location determination method: [getPeriodicLocation](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPS.html#getPeriodicLocation-com.skyhookwireless.wps.WPSAuthentication-com.skyhookwireless.wps.WPSStreetAddressLookup-boolean-long-int-com.skyhookwireless.wps.WPSPeriodicLocationCallback-).
+A request for periodic location updates can be made using the following method: [getPeriodicLocation()](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPS.html#getPeriodicLocation-com.skyhookwireless.wps.WPSAuthentication-com.skyhookwireless.wps.WPSStreetAddressLookup-boolean-long-int-com.skyhookwireless.wps.WPSPeriodicLocationCallback-).
 
 This method will continue running for the specified number of iterations or until the user stops the request by returning [WPS_STOP](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPSContinuation.html#WPS_STOP) from the callback.
 
-It is highly recommended to enable [tiling mode](#enable-tiling-mode) with this location method.
+It is highly recommended to enable [tiling mode](#enable-tiling-mode) with this location method to eliminate frequent network requests to the server. Note that if street address or time zone lookup is requested, this call will **not use the tiling cache** to determine locations.
 
-Note that if street address or time zone lookup is requested, this call will *not use* the tiling cache to determine locations.
-
-Starting with Android Pie the recommended period is *30 seconds or longer* due to Wi-Fi scan throttling.
+Starting with Android Pie the recommended minimum period for location updates is **30 seconds or longer**.
 
 ### Offline location
 
@@ -165,19 +163,19 @@ Check the [full API reference](https://skyhookwireless.github.io/skyhook-locatio
 
 To turn logging on, add the following code in the `onCreate()` method of your activity, service or application:
 ```java
-SharedPreferences prefs = getSharedPreferences("skyhook", MODE_PRIVATE);
-SharedPreferences.Editor editor = prefs.edit();
-editor.putBoolean("com.skyhook.wps.LogEnabled", true);
-editor.apply();
+SharedPreferences.Editor skyhookPrefs = getSharedPreferences("skyhook", MODE_PRIVATE).edit();
+skyhookPrefs.putBoolean("com.skyhook.wps.LogEnabled", true);
+skyhookPrefs.apply();
 ```
 
-By default, the SDK will print log messages to Android logcat.
+By default, the SDK will output log messages to Android logcat.
 
 If you want the SDK to write log to a file, set the following preferences:
 ```java
-editor.putBoolean("com.skyhook.wps.LogEnabled", true);
-editor.putString("com.skyhook.wps.LogType", "BUILT_IN,FILE");
-editor.putString("com.skyhook.wps.LogFilePath", "/sdcard/wpslog.txt");
+skyhookPrefs.putBoolean("com.skyhook.wps.LogEnabled", true);
+skyhookPrefs.putString("com.skyhook.wps.LogType", "BUILT_IN,FILE");
+skyhookPrefs.putString("com.skyhook.wps.LogFilePath", "/sdcard/wpslog.txt");
+skyhookPrefs.apply();
 ```
 
 If you want to write the log file to external storage, make sure to obtain the `WRITE_EXTERNAL_STORAGE` permission in your app.
