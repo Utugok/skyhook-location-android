@@ -80,7 +80,6 @@ If you are planning to request location determination frequently, it is recommen
 This mode is activated by calling [setTiling()](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPS.html#setTiling-java.lang.String-long-long-com.skyhookwireless.wps.TilingListener-):
 ```java
 File tileDir = new File(getFilesDir(), "tiles");
-tileDir.mkdirs();
 
 xps.setTiling(
     tileDir.getAbsolutePath(),  // directory where to store tiles
