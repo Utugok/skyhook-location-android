@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.skyhook.location</groupId>
+  <artifactId>location-sdk-android</artifactId>
+  <version>5.0.0-beta4</version>
+  <packaging>aar</packaging>
+  <name>Precision Location SDK</name>
+  <url>https://github.com/SkyhookWireless/location-quick-start-android</url>
+  <licenses>
+    <license>
+      <name>Skyhook Terms and Conditions</name>
+      <url>https://my.skyhook.com/termsofservice</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>Skyhook</id>
+      <name>Skyhook Inc.</name>
+      <email>support@skyhook.com</email>
+    </developer>
+  </developers>
+  <dependencies>
+    <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>appcompat-v7</artifactId>
+      <version>23.1.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-net</groupId>
+      <artifactId>commons-net</artifactId>
+      <version>3.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.sgr</groupId>
+      <artifactId>s2-geometry-library-java</artifactId>
+      <version>1.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.cliftonlabs</groupId>
+      <artifactId>json-simple</artifactId>
+      <version>2.3.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations-java5</artifactId>
+      <version>15.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>
