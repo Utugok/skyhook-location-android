@@ -14,12 +14,14 @@ repositories {
     maven { url 'https://skyhookwireless.github.io/skyhook-location-android' }
 }
 ```
+
 Add SDK to the `dependencies` section:
 ```gradle
 dependencies {
     implementation 'com.skyhook.location:location-sdk-android:5.0.0-beta3'
 }
 ```
+
 Note that you can exclude transitive dependencies to resolve version conflicts, and include those dependencies separately:
 ```gradle
 implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -63,7 +65,13 @@ import com.skyhookwireless.wps;
 
 Create an instance of [XPS](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/XPS.html) (or [WPS](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPS.html)) API object in the `onCreate` method of your activity or service:
 ```java
-xps = new XPS(this);
+private IWPS xps;
+...
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    xps = new XPS(this);
+    ...
+}
 ```
 
 Call [setKey()](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPS.html#setKey-java.lang.String-) to initialize the API with your key:
@@ -118,7 +126,7 @@ xps.getLocation(null, WPSStreetAddressLookup.WPS_NO_STREET_ADDRESS_LOOKUP, false
 
         // To retry the location call on error use WPS_CONTINUE,
         // otherwise return WPS_STOP
-        return WPSContinuation.WPS_STOP;
+        return WPSContinuation.WPS_CONTINUE;
     }
 
     @Override
@@ -151,7 +159,11 @@ The API supports offline location that allows the application to determine the l
 
 When your app is terminating, it is recommended to cancel any ongoing operations by invoking the [abort()](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPS.html#abort--) method:
 ```java
-xps.abort();
+public void onDestroy() {
+    super.onDestroy();
+    xps.abort();
+    ...
+}
 ```
 
 ## API reference
