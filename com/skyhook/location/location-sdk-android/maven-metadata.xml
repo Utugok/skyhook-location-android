@@ -3,11 +3,12 @@
   <groupId>com.skyhook.location</groupId>
   <artifactId>location-sdk-android</artifactId>
   <versioning>
-    <release>5.0.0-beta4</release>
+    <release>5.0.0-beta5</release>
     <versions>
       <version>5.0.0-beta3</version>
       <version>5.0.0-beta4</version>
+      <version>5.0.0-beta5</version>
     </versions>
-    <lastUpdated>20190531184749</lastUpdated>
+    <lastUpdated>20190610164211</lastUpdated>
   </versioning>
 </metadata>
