@@ -18,14 +18,14 @@ repositories {
 Add SDK to the `dependencies` section:
 ```gradle
 dependencies {
-    implementation 'com.skyhook.location:location-sdk-android:5.0+'
+    implementation 'com.skyhook.location:location-sdk-android:5.2+'
 }
 ```
 
 Note that you can exclude transitive dependencies to resolve version conflicts, and include those dependencies separately:
 ```gradle
 implementation 'com.android.support:appcompat-v7:28.0.0'
-implementation('com.skyhook.location:location-sdk-android:5.0+') {
+implementation('com.skyhook.location:location-sdk-android:5.2+') {
     exclude module: 'support-v4'
 }
 ```
@@ -34,15 +34,42 @@ implementation('com.skyhook.location:location-sdk-android:5.0+') {
 
 Location SDK automatically adds the following permissions to your app's manifest:
 
-| Android Permission                                     | Used For
-|--------------------------------------------------------|---------
-| android.permission.INTERNET                            | Communication with Skyhook's servers
-| android.permission.CHANGE_WIFI_STATE                   | Initiation of Wi-Fi scans
-| android.permission.ACCESS_WIFI_STATE                   | Obtaining information about the Wi-Fi environment
-| android.permission.ACCESS_COARSE_LOCATION              | Obtaining Wi-Fi or cellular based locations
-| android.permission.ACCESS_FINE_LOCATION                | Accessing GPS location for hybrid location functionality
-| android.permission.WAKE_LOCK                           | Keeping processor awake when receiving background updates
-| android.permission.ACCESS_NETWORK_STATE                | Checking network connection type to optimize performance
+| Android Permission                         | Used For
+|--------------------------------------------|-----------------------------------------------------------
+| android.permission.INTERNET                | Communication with Skyhook's servers
+| android.permission.CHANGE_WIFI_STATE       | Initiation of Wi-Fi scans
+| android.permission.ACCESS_WIFI_STATE       | Obtaining information about the Wi-Fi environment
+| android.permission.ACCESS_COARSE_LOCATION  | Obtaining Wi-Fi or cellular based locations
+| android.permission.ACCESS_FINE_LOCATION    | Accessing GPS location for hybrid location functionality
+| android.permission.WAKE_LOCK               | Keeping processor awake when receiving background updates
+| android.permission.ACCESS_NETWORK_STATE    | Checking network connection type to optimize performance
+
+### Background Mode
+
+Starting with **Android Oreo**, the system enforces significant limitations in location determination capabilities when the app is running in background, for power consumption and user privacy considerations.
+
+In order to use the Skyhook Location SDK in background mode, a regular app has to provide general means of background execution - e.g. by running a foreground service, or setting up a periodic alarm. A foreground service is required to achieve location update rates faster than once every 30 minutes.
+
+Add the following service declaration in your manifest if you are planning to use the Location SDK in background without running a foreground service:
+```xml
+<service
+    android:name="com.skyhookwireless.spi.network.NetworkJobService"
+    android:permission="android.permission.BIND_JOB_SERVICE"
+    android:exported="false"/>
+```
+
+The following receiver declaration is recommended (but not required) if your app's minimum supported Android version is below **API 24 (Nougat)**:
+```xml
+<receiver
+    android:name="com.skyhookwireless.spi.power.AlarmReceiver"
+    android:exported="false"/>
+```
+
+If your app is targeting **API level 29 (Android 10)** or higher and you are willing to determine location in background, add the following permission to your manifest file:
+
+| Android Permission                            | Used For
+|-----------------------------------------------|----------------------------------
+| android.permission.ACCESS_BACKGROUND_LOCATION | Determine location in background
 
 ### Using the Android Emulator
 
@@ -98,11 +125,13 @@ xps.setTiling(
 
 ### Request location permission
 
-With the runtime permissions model introduced in Android M, the Precision Location SDK requires location permission to be granted before calling most of its methods. Depending on how the SDK is used in the application, developer can decide when to request the permission and if an explanation needs to be displayed for the user:
+With the runtime permissions model introduced in **Android M**, the Precision Location SDK requires location permission to be granted before calling most of its methods. Depending on how the SDK is used in the application, developer can decide when to request the permission and if an explanation needs to be displayed for the user:
 ```java
 ActivityCompat.requestPermissions(
     this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 0);
 ```
+
+In order to determine location in background on **Android 10** or higher, make sure to check that the user has granted the "Allow all the time" (`ACCESS_BACKGROUND_LOCATION`) location permission.
 
 ## Location API
 
@@ -146,7 +175,7 @@ This method will continue running for the specified number of iterations or unti
 
 It is highly recommended to enable [tiling mode](#enable-tiling-mode) with this location method to eliminate frequent network requests to the server. Note that if street address or time zone lookup is requested, this call will **not use the tiling cache** to determine locations.
 
-Starting with Android Pie the recommended minimum period for location updates is **30 seconds or longer**.
+Starting with **Android Pie** the recommended minimum period for location updates is **30 seconds or longer**.
 
 ### Offline location
 
