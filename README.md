@@ -18,14 +18,14 @@ repositories {
 Add SDK to the `dependencies` section:
 ```gradle
 dependencies {
-    implementation 'com.skyhook.location:location-sdk-android:5.2+'
+    implementation 'com.skyhook.location:location-sdk-android:5.4+'
 }
 ```
 
 Note that you can exclude transitive dependencies to resolve version conflicts, and include those dependencies separately:
 ```gradle
 implementation 'com.android.support:appcompat-v7:28.0.0'
-implementation('com.skyhook.location:location-sdk-android:5.2+') {
+implementation('com.skyhook.location:location-sdk-android:5.4+') {
     exclude module: 'support-v4'
 }
 ```
