@@ -219,3 +219,138 @@ skyhookPrefs.apply();
 ```
 
 If you want to write the log file to external storage, make sure to obtain the `WRITE_EXTERNAL_STORAGE` permission in your app.
+
+## Legacy Changelog (non-GitHub releases prior to 5.0)
+
+### Version 4.10.x
+
+* Internal improvements required for location provider releases
+
+### Version 4.9.8
+
+* Additional geofencing improvements
+
+### Version 4.9.7
+
+* Added compatibility with Wi-Fi scan throttling in Android 8
+* Improvements for Android Doze mode
+* Improved geofencing performance
+
+### Version 4.9.6
+
+* Added compatibility with Lite Doze mode in Android 7
+
+### Version 4.9.5
+
+* Added client back-off mechanism
+
+### Version 4.9.4
+
+* Added support for `metro1`/`metro2`
+
+### Version 4.9.3
+
+* Improved general CPU utilization and power consumption
+* Optimized network load and power consumption in tiling mode
+* Improved geofencing in UMTS and LTE networks
+
+### Version 4.9.2
+
+* Added a check to respect the system-wide location permission settings
+* Removed the requirement for the calling app to hold the `READ_PHONE_STATE` permission
+
+### Version 4.9.1
+
+* Improved power consumption
+* Added support for Android 4.4 Kit-Kat
+* Added support for Wi-Fi scan-only mode (new in Android 4.3: `JELLY_BEAN_MR2`). This feature allows our SDK to perform a Wi-Fi scan without enabling Wi-Fi connectivity. For devices running on Android versions prior to 4.3, the Skyhook SDK will continue to enable the Wi-Fi radio to determine location. For devices running Android 4.3 and newer, we will no longer enable the Wi-Fi radio but instead use the Wi-Fi scan-only mode setting to control Wi-Fi scanning when Wi-Fi is disabled
+* To ensure consistent behavior, the SDK will now throw an exception if the `READ_PHONE_STATE` permission is not held by the calling app
+
+### Version 4.9
+
+* Introducing key-based authentication
+
+### Version 4.8
+
+* Added certified location
+* Improved power consumption during geofencing
+* Two new geofence types `INSIDE` and `OUTSIDE` for cases where immediate triggering is desired
+* Fixed an edge case that could result in the client downloading extra tile data
+* Improved accuracy of location on slow scanning devices
+
+### Version 4.7.6
+
+* Fixed a bug that could negatively affect time to fix on some CDMA devices
+
+### Version 4.7.5
+
+* Added support for location based on LTE cell towers
+* Improved the accuracy of all cell locations
+* Improved time to fix and power efficiency when using in-flight location
+* Fixed a bug in tiling when venue and tuned locations fall on different sides of a tile boundary
+
+### Version 4.7
+
+* Tuned locations are now available to users even when location is run with tiling. As a reminder, tuning always applies to actual current location only. It can not be used to tune an offline token. Tuning is not an effective strategy for trying to make small adjustments to a location. It is best used for adding to our coverage or fixing results that are off by hundreds of meters.
+* Background location on Android now works even when device is asleep. When your device goes to sleep, and Skyhook is running within a service, we will continue to wake your device at the specified user period in order to provide location per your specifications. Please be aware that short-period locations will reduce battery life if allowed to run continually. For this reason, we recommend running background locations with a user period of 120 seconds or greater.
+* Skyhook now returns coarse location based on region codes (known as LACs) provided by the network. A new parameter has been introduced, nlac, to indicate that LAC information was used in the fix. These location fixes will typically have a higher error estimate (HPE).
+* In-flight positioning fixes. Due to a third party change, older versions of our SDK may no longer be able to resolve in-flight location.
+
+### Version 4.6
+
+* Added in-flight positioning capabilities
+* Improvements in power consumption and accuracy for geofences
+* Enhanced indoor location for surveyed sites
+* Added offline location
+
+### Version 4.5
+
+Version 4.5 was never released publicly.
+
+### Version 4.4
+
+* Added geofencing
+* Improved long period support
+* Improvements to positioning in remote mode
+
+### Version 4.3
+
+* Improved memory usage when downloading tiles
+
+### Version 4.2
+
+* Added auto-registration
+* Improved offline location coverage
+
+### Version 4.1
+
+* Improved first fix accuracy
+* Improved location when stationary
+* Various improvements to hybrid algorithm, particularly in tracking mode
+
+### Version 4.0
+
+* Optimized power management
+* Better data and bandwidth utilization
+* Improvements to hybrid positioning
+* Inertial Navigation System
+
+## Limited Use License
+
+Copyright 2005-present Skyhook, Inc. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted subject to the following:
+
+Use and redistribution is subject to the Software License and Development Agreement, available at www.skyhookwireless.com.
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+## Patents
+
+Please visit [the website](https://www.skyhook.com/patents) to see the full list of patents issued to Skyhook.
+
+## Troubleshooting
+
+For any questions, please sign into your My Skyhook account at: [my.skyhook.com](https://my.skyhook.com).
