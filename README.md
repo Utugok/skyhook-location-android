@@ -4,12 +4,12 @@
 
 By using the SDK you agree to [Skyhook Terms and Conditions](https://my.skyhook.com/termsofservice). Please review them in full prior to use.
 
-In particular, the following section imposes certain requirements on the software to use the SDK:
+In particular, the following section imposes certain requirements on the software developer in order to use the SDK:
 > In connection with the use of Skyhook Products, Customer agrees that (a) it will maintain a privacy policy that complies, at a minimum, with all applicable laws, rules or regulations and any generally recognized industry guidelines governing privacy notices and the use of location services in each jurisdiction in which data is collected; and (b) it will ensure that any consents and notices required by applicable laws, rules or regulations for the use of location services have been obtained. With respect to subsection (b) above, Customer agrees that as part of any terms or implementation of a Skyhook Product, it will provide notice to and obtain (where necessary) opt-in consent from end users regarding the scope of collection and sharing of data with Skyhook and third parties, including, for example, MAC Addresses, IP Addresses and location information. Customer may also notify users that they have the option to opt out or delete certain information collected by Skyhook Product (including MAC Addresses and IP Addresses) through the Skyhook opt-out mechanism available at [http://www.skyhookwireless.com/opt-out-of-skyhook-products](http://www.skyhookwireless.com/opt-out-of-skyhook-products).
 
 ### Legal Consent
 
-The Android application or platform that uses the SDK must obtain a consent from the user to collect and share data with Skyhook. In practical terms it means that the app should present a UI prompt to the user informing about data collection and providing explicit options to accept or decline. If the user declines, the app should proceed in limited capacity without the location service, or stop entirely.
+The Android application or platform that uses the SDK must obtain explicit consent from the user to collect and share data with Skyhook. In practical terms it means that the app should present a UI prompt to the user informing about data collection and providing explicit options to accept or decline. If the user declines, the app should proceed in limited capacity without the location service, or stop entirely.
 
 ### Opt-Out
 
