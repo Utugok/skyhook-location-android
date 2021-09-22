@@ -3,7 +3,7 @@
   <groupId>com.skyhook.location</groupId>
   <artifactId>location-sdk-android</artifactId>
   <versioning>
-    <release>5.8.0</release>
+    <release>5.8.1</release>
     <versions>
       <version>5.0.0-beta3</version>
       <version>5.0.0-beta4</version>
@@ -30,7 +30,8 @@
       <version>5.7.0-alpha11</version>
       <version>5.7.0-rc1</version>
       <version>5.8.0</version>
+      <version>5.8.1</version>
     </versions>
-    <lastUpdated>20210917234954</lastUpdated>
+    <lastUpdated>20210922205801</lastUpdated>
   </versioning>
 </metadata>
