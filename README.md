@@ -37,14 +37,14 @@ repositories {
 Add SDK to the `dependencies` section:
 ```gradle
 dependencies {
-    implementation 'com.skyhook.location:location-sdk-android:5.6+'
+    implementation 'com.skyhook.location:location-sdk-android:5.8+'
 }
 ```
 
 Note that you can exclude transitive dependencies to resolve version conflicts, and include those dependencies separately:
 ```gradle
 implementation 'com.android.support:appcompat-v7:28.0.0'
-implementation('com.skyhook.location:location-sdk-android:5.6+') {
+implementation('com.skyhook.location:location-sdk-android:5.8+') {
     exclude module: 'support-v4'
 }
 ```
@@ -125,7 +125,12 @@ Call [setKey()](https://skyhookwireless.github.io/skyhook-location-android/javad
 xps.setKey("YOUR KEY");
 ```
 
-You can obtain the API key from [my.skyhook.com](https://my.skyhook.com), creating an account and a new Precision Location project.
+You can obtain the API key from [my.skyhook.com](https://my.skyhook.com) by creating an account and a new Precision Location project.
+
+If you use a key and a SKU label for authentication with Skyhook, call [setAuthentication()](https://skyhookwireless.github.io/skyhook-location-android/javadoc/com/skyhookwireless/wps/WPS.html#setAuthentication-java.lang.String-java.lang.String-) instead as shown below:
+```java
+xps.setAuthentication("YOUR KEY", "YOUR SKU");
+```
 
 ### Enable tiling mode
 
